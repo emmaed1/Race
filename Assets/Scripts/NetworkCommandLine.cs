@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkCommandLine : MonoBehaviour
+public class NetworkCommandLine : NetworkBehaviour
 {
     private NetworkManager networkManager;
     // Start is called before the first frame update

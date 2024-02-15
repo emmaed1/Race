@@ -22,32 +22,25 @@ public class PlayerMovement : NetworkBehaviour
     private float currBrake = 0f;
     private float currTurnAngle = 0f;
 
-    private void Start()
-    {
-        /*if (IsLocalPlayer)
-        {
-            this.transform.GetChild(0).gameObject.GetComponent<Camera>().enabled = true; ;
-        }
-        else
-        {
-            this.transform.GetChild(0).gameObject.GetComponent<Camera>().enabled = false; ;
-        }*/
-    }
     private void FixedUpdate()
     {
+        /*if (!IsOwner) return;*/
+
         currAccel = accel * Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.Space))
+        frontRight.motorTorque = currAccel;
+        frontLeft.motorTorque = currAccel;
+        backRight.motorTorque = currAccel;
+        backLeft.motorTorque = currAccel;
+
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             currBrake = brakeForce;
         }
         else
         {
-            currBrake = currBrake = 0f;
+            currBrake = 0f;
         }
-        frontRight.motorTorque = currAccel;
-        frontLeft.motorTorque = currAccel;
-
         frontRight.brakeTorque = currBrake;
         frontLeft.brakeTorque = currBrake;
         backRight.brakeTorque = currBrake;

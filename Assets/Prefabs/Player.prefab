@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 6715737431568041802}
   - component: {fileID: 3104043957483448561}
   - component: {fileID: 5311363566101106030}
-  - component: {fileID: 4337115770873697032}
-  - component: {fileID: -4458299212744687785}
   - component: {fileID: 9053386161924810964}
   m_Layer: 0
   m_Name: Player
@@ -132,32 +130,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &4337115770873697032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093549084266463081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b72e3d2dd68640bfe3178477c0ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-4458299212744687785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093549084266463081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 156702c3be03f6a44892565b4e3dd9f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 9053386161924810964}
-  jumpForce: 10
 --- !u!54 &9053386161924810964
 Rigidbody:
   m_ObjectHideFlags: 0

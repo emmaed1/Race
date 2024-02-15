@@ -9,13 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4632588817000581015}
-  - component: {fileID: 2753399085705198324}
   - component: {fileID: 3873226910008085270}
-  - component: {fileID: 3672878349685865533}
   - component: {fileID: 1862798917339280861}
   - component: {fileID: 242621589959534138}
   - component: {fileID: 1957409602389508625}
   - component: {fileID: 1801630272939731447}
+  - component: {fileID: -3970291590456572813}
   m_Layer: 0
   m_Name: Vehicle_Player
   m_TagString: Untagged
@@ -32,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1290287225974651876}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42,18 +41,6 @@ Transform:
   - {fileID: 8563434879906781934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2753399085705198324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290287225974651876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caac78e4e69159d42936d3e5057c6112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3873226910008085270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,37 +62,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &3672878349685865533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290287225974651876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!114 &1862798917339280861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +83,7 @@ MonoBehaviour:
   frontLeftTrasnform: {fileID: 5871798411148226372}
   backRightTrasnform: {fileID: 8617676498590523762}
   backLeftTrasnform: {fileID: 2608854009788852958}
-  accel: 700
+  accel: 1000
   brakeForce: 250
   maxTurnAngle: 20
 --- !u!54 &242621589959534138
@@ -138,8 +94,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290287225974651876}
   serializedVersion: 4
-  m_Mass: 1000
-  m_Drag: 0
+  m_Mass: 100
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -156,7 +112,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!64 &1957409602389508625
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -200,6 +156,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.1879063, z: 4.0996475}
   m_Center: {x: 0, y: 1.4619863, z: -0.28718197}
+--- !u!114 &-3970291590456572813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290287225974651876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 0
+  SyncPositionZ: 1
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 0
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
 --- !u!1 &1928713169704828681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275a273e0efc2fe45a25f57ed54553f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3920036010947176823, guid: b364a1eac76fd6845804937eb1aa4ce6, type: 3}
+  player: {fileID: 4632588817000581015}
 --- !u!1 &7962806022709201105
 GameObject:
   m_ObjectHideFlags: 0
