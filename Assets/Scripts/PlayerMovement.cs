@@ -28,11 +28,6 @@ public class PlayerMovement : NetworkBehaviour
 
         currAccel = accel * Input.GetAxis("Vertical");
 
-        frontRight.motorTorque = currAccel;
-        frontLeft.motorTorque = currAccel;
-        backRight.motorTorque = currAccel;
-        backLeft.motorTorque = currAccel;
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currBrake = brakeForce;
@@ -41,6 +36,12 @@ public class PlayerMovement : NetworkBehaviour
         {
             currBrake = 0f;
         }
+
+        frontRight.motorTorque = currAccel;
+        frontLeft.motorTorque = currAccel;
+        backRight.motorTorque = currAccel;
+        backLeft.motorTorque = currAccel;
+
         frontRight.brakeTorque = currBrake;
         frontLeft.brakeTorque = currBrake;
         backRight.brakeTorque = currBrake;
