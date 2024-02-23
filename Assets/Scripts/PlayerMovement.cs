@@ -3,7 +3,35 @@ using Unity.Netcode;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    public Rigidbody rb;
+    [SerializeField] private float movementSpeed = 7f;
+    [SerializeField] private float rotationSpeed = 500f;
+    [SerializeField] private float positionRange = 10f;
+
+    public override void OnNetworkSpawn()
+    {
+        transform.position = new Vector3(Random.Range(positionRange, -positionRange), 0, Random.Range(positionRange, -positionRange));
+    }
+
+    private void Update()
+    {
+        if (!IsOwner) return;
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 movementDirection = new Vector3 (horizontalInput, 0, verticalInput);
+        movementDirection.Normalize();
+
+        transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
+
+        if(movementDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            transform.rotation =Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    /*public Rigidbody rb;
     [SerializeField] WheelCollider frontRight;
     [SerializeField] WheelCollider frontLeft;
     [SerializeField] WheelCollider backRight;
@@ -24,7 +52,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        /*if (!IsOwner) return;*/
+        *//*if (!IsOwner) return;*//*
 
         currAccel = accel * Input.GetAxis("Vertical");
 
@@ -65,5 +93,5 @@ public class PlayerMovement : NetworkBehaviour
         
         trans.position = position;
         trans.rotation = rotation;
-    }
+    }*/
 }
