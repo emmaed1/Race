@@ -3,6 +3,8 @@ using Unity.Netcode;
 
 public class PlayerMovement : NetworkBehaviour
 {
+    private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [SerializeField] private float movementSpeed = 7f;
     [SerializeField] private float rotationSpeed = 500f;
     [SerializeField] private float positionRange = 10f;
@@ -14,23 +16,47 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Update()
     {
+        Debug.Log(OwnerClientId + "; random number" + randomNumber.Value.ToString());
         if (!IsOwner) return;
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movementDirection = new Vector3 (horizontalInput, 0, verticalInput);
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            randomNumber.Value = Random.Range(0, 100);
+        }
+
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection.Normalize();
 
         transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
 
-        if(movementDirection != Vector3.zero)
+        if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation =Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
     }
 
+
+    /*private void Update()
+    {
+        if(!IsOwner) return;
+        HandleMovement();
+    }
+    private void HandleMovement()
+    {
+        Vector3 moveDirection = new Vector3(0, 0, 0);
+
+        if (Input.GetKey(KeyCode.W)) moveDirection.z = +1f;
+        if (Input.GetKey(KeyCode.S)) moveDirection.z = -1f;
+        if (Input.GetKey(KeyCode.A)) moveDirection.x = -1f;
+        if (Input.GetKey(KeyCode.D)) moveDirection.x = +1f;
+
+        float moveSpeed = 3f;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+    }*/
     /*public Rigidbody rb;
     [SerializeField] WheelCollider frontRight;
     [SerializeField] WheelCollider frontLeft;
