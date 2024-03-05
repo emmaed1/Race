@@ -3,7 +3,7 @@ using Unity.Netcode;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] private float movementSpeed = 7f;
     [SerializeField] private float rotationSpeed = 500f;
@@ -16,16 +16,11 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Update()
     {
-        Debug.Log(OwnerClientId + "; random number" + randomNumber.Value.ToString());
+       
         if (!IsOwner) return;
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            randomNumber.Value = Random.Range(0, 100);
-        }
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection.Normalize();

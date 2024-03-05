@@ -58,7 +58,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
     private void startClick()
     {
-        NetworkManager.SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
+        NetworkManager.SceneManager.LoadScene("PlayerLobby", LoadSceneMode.Single);
     }
 
     private void Update()

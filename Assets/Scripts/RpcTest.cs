@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RpcTest : NetworkBehaviour
 {
-    public override void OnNetworkSpawn()
+    /*public override void OnNetworkSpawn()
     {
         if (!IsServer && IsOwner)
         {
@@ -28,5 +28,5 @@ public class RpcTest : NetworkBehaviour
     {
         Debug.Log($"Server Received the RPC #{value} on NetworkObject #{sourceNetworkObjectId}");
         TestClientRpc(value, sourceNetworkObjectId);
-    }
+    }*/
 }
