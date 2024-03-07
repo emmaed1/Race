@@ -43,6 +43,19 @@ public class LobbyManager : NetworkBehaviour
         if (IsClient)
         {
             allNetPlayers.OnListChanged += ClientOnAllPlayersChanged;
+            NetworkManager.Singleton.OnClientDisconnectCallback += ClientDissconnected;
+        }
+    }
+
+    private void ClientDissconnected(ulong clientId)
+    {
+        foreach (PlayerInfo pi in allNetPlayers)
+        {
+            if (pi.clientId == clientId)
+            {
+                allNetPlayers.Remove(pi);
+            }
+
         }
     }
 
@@ -69,8 +82,10 @@ public class LobbyManager : NetworkBehaviour
     private void AddPlayerPanel(PlayerInfo info)
     {
         GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
-        newPanel.GetComponent<LobbyPlayerLabel>().setPlayerName("Player " + info.clientId.ToString());
+        newPanel.GetComponent<LobbyPlayerLabel>().setPlayerName(info.clientId);
+        newPanel.GetComponent<LobbyPlayerLabel>().onKickClicked += kickUserBtn;
 
+        if(IsClient && !IsHost) newPanel.GetComponent<Button>().gameObject.SetActive(false);
         playerPanels.Add(newPanel);
     }
 
@@ -88,4 +103,17 @@ public class LobbyManager : NetworkBehaviour
             AddPlayerPanel(pi);
         }
     }
+    private void kickUserBtn(ulong KickTarget)
+    {
+        if (!IsServer || !IsHost) return;
+        foreach(PlayerInfo pi in allNetPlayers)
+        {
+            if(pi.clientId == KickTarget)
+            {
+                allNetPlayers.Remove(pi);
+                NetworkManager.Singleton.DisconnectClient(KickTarget);
+            }
+        }
+    }
+
 }
