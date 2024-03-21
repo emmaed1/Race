@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyManager : NetworkBehaviour
@@ -16,6 +17,8 @@ public class LobbyManager : NetworkBehaviour
     public NetworkList<PlayerInfo> allNetPlayers = new NetworkList<PlayerInfo>();
     private List<GameObject> playerPanels = new List<GameObject>();
 
+    private ulong myLocalClientId;
+
     private Color[] playerColors = new Color[]
     {
         Color.blue,
@@ -23,13 +26,18 @@ public class LobbyManager : NetworkBehaviour
         Color.cyan,
         Color.yellow
     };
+
     private void Start()
     {
         if (IsHost)
         {
-            AddPlayerToList(NetworkManager.LocalClientId);
+            foreach (NetworkClient nc in NetworkManager.ConnectedClientsList)
+            {
+                AddPlayerToList(nc.ClientId);
+            }        
             RefreshPlayerPanels();
         }
+        myLocalClientId = NetworkManager.LocalClientId;
     }
 
     public override void OnNetworkSpawn()
@@ -49,14 +57,7 @@ public class LobbyManager : NetworkBehaviour
 
     private void ClientDissconnected(ulong clientId)
     {
-        foreach (PlayerInfo pi in allNetPlayers)
-        {
-            if (pi.clientId == clientId)
-            {
-                allNetPlayers.Remove(pi);
-            }
-
-        }
+        
     }
 
     private void ClientOnAllPlayersChanged(NetworkListEvent<PlayerInfo> changeEvent)
@@ -81,11 +82,20 @@ public class LobbyManager : NetworkBehaviour
 
     private void AddPlayerPanel(PlayerInfo info)
     {
-        GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
-        newPanel.GetComponent<LobbyPlayerLabel>().setPlayerName(info.clientId);
-        newPanel.GetComponent<LobbyPlayerLabel>().onKickClicked += kickUserBtn;
 
-        if(IsClient && !IsHost) newPanel.GetComponent<Button>().gameObject.SetActive(false);
+        GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
+        LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
+        LPL.setPlayerName(info.clientId);
+        if(IsServer)
+        {
+            LPL.onKickClicked += kickUserBtn;
+        }
+
+        if (IsClient && !IsHost || info.clientId == myLocalClientId)
+        {
+            LPL.enableKick(false);
+        }
+
         playerPanels.Add(newPanel);
     }
 
@@ -103,17 +113,32 @@ public class LobbyManager : NetworkBehaviour
             AddPlayerPanel(pi);
         }
     }
-    private void kickUserBtn(ulong KickTarget)
+    private void kickUserBtn(ulong kickTarget)
     {
         if (!IsServer || !IsHost) return;
         foreach(PlayerInfo pi in allNetPlayers)
         {
-            if(pi.clientId == KickTarget)
+            if(pi.clientId == kickTarget)
             {
                 allNetPlayers.Remove(pi);
-                NetworkManager.Singleton.DisconnectClient(KickTarget);
+                //send RPC to targetClient to disconnect/scene
+                DisconnectClient(kickTarget);
             }
         }
+        RefreshPlayerPanels();
     }
 
+    public void DisconnectClient(ulong kickTarget)
+    {
+        ClientRpcParams clientRpcParams = default;
+        clientRpcParams.Send.TargetClientIds = new ulong[1] { kickTarget };
+        DisconnectClientRPC(clientRpcParams);
+        NetworkManager.Singleton.DisconnectClient(kickTarget);
+    }
+
+    [ClientRpc]
+    public void DisconnectClientRPC(ClientRpcParams clientRpcParams)
+    {
+        SceneManager.LoadScene(0);
+    }
 }

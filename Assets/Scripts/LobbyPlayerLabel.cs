@@ -47,4 +47,9 @@ public class LobbyPlayerLabel : MonoBehaviour
     {
         colorImage.material.color = color;
     }
+
+    public void enableKick(bool enabled)
+    {
+        Kick_Btn.gameObject.SetActive(enabled);
+    }
 }
