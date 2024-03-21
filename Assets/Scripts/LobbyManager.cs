@@ -87,9 +87,14 @@ public class LobbyManager : NetworkBehaviour
         GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
         LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
         LPL.setPlayerName(info.clientId);
+        
         if(IsServer)
         {
             LPL.onKickClicked += kickUserBtn;
+
+            //assume server is always ready and set it to true
+            info.isPlayerReady = true;
+            ReadyBtn.gameObject.SetActive(false);
         }
 
         if (IsClient && !IsHost || info.clientId == myLocalClientId)
@@ -97,7 +102,26 @@ public class LobbyManager : NetworkBehaviour
             LPL.enableKick(false);
         }
 
+        LPL.SetReady(info.isPlayerReady);
+        LPL.SetIconColor(playerColors[findPlayerIndex(info.clientId)]);
         playerPanels.Add(newPanel);
+    }
+
+    private int findPlayerIndex(ulong clientId)
+    { 
+        int index = 0;
+        int myMatch = 0;
+
+        foreach (NetworkClient nc in NetworkManager.ConnectedClientsList)
+        {
+            if(nc.ClientId == clientId)
+            {
+                //match found
+                myMatch = index;        
+            }
+            index++;
+        }
+        return myMatch;
     }
 
     private void RefreshPlayerPanels()
@@ -141,10 +165,5 @@ public class LobbyManager : NetworkBehaviour
     public void DisconnectClientRPC(ClientRpcParams clientRpcParams)
     {
         SceneManager.LoadScene(0);
-    }
-
-    public void OnStartBtn()
-    {
-        SceneManager.LoadScene(2);
     }
 }

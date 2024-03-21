@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class LobbyPlayerLabel : MonoBehaviour
         PlayerText.text = "Player " + playerName.ToString();
     }
 
-    public void BtnKick_Clicked()
+    private void BtnKick_Clicked()
     {
         onKickClicked?.Invoke(clientId);
     }
