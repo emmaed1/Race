@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -140,5 +141,10 @@ public class LobbyManager : NetworkBehaviour
     public void DisconnectClientRPC(ClientRpcParams clientRpcParams)
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void OnStartBtn()
+    {
+        SceneManager.LoadScene(2);
     }
 }

@@ -26,7 +26,7 @@ public class LobbyPlayerLabel : MonoBehaviour
         PlayerText.text = "Player " + playerName.ToString();
     }
 
-    private void BtnKick_Clicked()
+    public void BtnKick_Clicked()
     {
         onKickClicked?.Invoke(clientId);
     }
