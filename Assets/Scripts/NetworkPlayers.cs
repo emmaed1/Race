@@ -25,9 +25,8 @@ public class NetworkPlayers : NetworkBehaviour
 
     private void SeverStart()
     {
-        PlayerInfo info = new PlayerInfo(NetworkManager.LocalClientId);
+        PlayerInfo info = new PlayerInfo(NetworkManager.LocalClientId);    
         info.isPlayerReady = true;
         allNetPlayers.Add(info);
-
     }
 }

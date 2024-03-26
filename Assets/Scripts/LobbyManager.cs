@@ -52,13 +52,8 @@ public class LobbyManager : NetworkBehaviour
         if (IsClient)
         {
             allNetPlayers.OnListChanged += ClientOnAllPlayersChanged;
-            NetworkManager.Singleton.OnClientDisconnectCallback += ClientDissconnected;
+            //NetworkManager.Singleton.OnClientDisconnectCallback += ClientDissconnected;
         }
-    }
-
-    private void ClientDissconnected(ulong clientId)
-    {
-        
     }
 
     private void ClientOnAllPlayersChanged(NetworkListEvent<PlayerInfo> changeEvent)
@@ -83,7 +78,6 @@ public class LobbyManager : NetworkBehaviour
 
     private void AddPlayerPanel(PlayerInfo info)
     {
-
         GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
         LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
         LPL.setPlayerName(info.clientId);
@@ -100,6 +94,7 @@ public class LobbyManager : NetworkBehaviour
         if (IsClient && !IsHost || info.clientId == myLocalClientId)
         {
             LPL.enableKick(false);
+            ReadyBtn.gameObject.SetActive(true);
         }
 
         LPL.SetReady(info.isPlayerReady);
@@ -112,14 +107,13 @@ public class LobbyManager : NetworkBehaviour
         int index = 0;
         int myMatch = 0;
 
-        foreach (NetworkClient nc in NetworkManager.ConnectedClientsList)
+        for (int i = 0; i > allNetPlayers.Count - 1; i++)
         {
-            if(nc.ClientId == clientId)
+            if (clientId == allNetPlayers[i].clientId)
             {
                 //match found
                 myMatch = index;        
             }
-            index++;
         }
         return myMatch;
     }

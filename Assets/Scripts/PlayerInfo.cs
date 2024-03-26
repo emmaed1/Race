@@ -33,4 +33,8 @@ public struct PlayerInfo : INetworkSerializable, IEquatable<PlayerInfo>
         serializer.SerializeValue(ref isPlayerReady);
         serializer.SerializeValue(ref colorId);        
     }
+
+    public override string ToString() => Name.Value.ToString();
+    public static implicit operator string(PlayerInfo name) => name.ToString();
+    public static implicit operator PlayerInfo(string s) => new PlayerInfo { Name = new FixedString64Bytes(s) };
 }
