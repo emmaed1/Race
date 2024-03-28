@@ -555,7 +555,7 @@ MonoBehaviour:
   PlayerText: {fileID: 7101513951743410129}
   readyImage: {fileID: 6131497563975950736}
   colorImage: {fileID: 8887522668055016902}
-  Kick_Btn: {fileID: 2095739575166778478}
+  kickBtn: {fileID: 2095739575166778478}
 --- !u!1 &6358680098834919403
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: f63272132fa6815439da528b558fcc9b, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

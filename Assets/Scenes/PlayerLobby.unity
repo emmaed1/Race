@@ -2356,6 +2356,7 @@ GameObject:
   - component: {fileID: 2108353760}
   - component: {fileID: 2108353761}
   - component: {fileID: 2108353759}
+  - component: {fileID: 2108353762}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -2380,6 +2381,8 @@ MonoBehaviour:
   LeaveGameBtn: {fileID: 1974641186}
   PanelPrefab: {fileID: 4603645134931420558, guid: f11cc79070a481046b543272b520846a, type: 3}
   ContentGO: {fileID: 1353633954}
+  rdyTxt: {fileID: 788001638}
+  _NetworkedPlayers: {fileID: 2108353762}
 --- !u!4 &2108353760
 Transform:
   m_ObjectHideFlags: 0
@@ -2416,6 +2419,19 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &2108353762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108353758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9487f54ab75a8d48b01919eae5d9f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCount: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

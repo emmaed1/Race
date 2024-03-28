@@ -4,160 +4,194 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyManager : NetworkBehaviour
 {
-    [SerializeField] public Button StartGameBtn;
-    [SerializeField] public Button ReadyBtn;
-    [SerializeField] public Button LeaveGameBtn;
+    [SerializeField] Button StartGameBtn;
+    [SerializeField] Button ReadyBtn;
+    [SerializeField] Button LeaveGameBtn;
     [SerializeField] private GameObject PanelPrefab;
     [SerializeField] private GameObject ContentGO;
+    [SerializeField] private TMP_Text rdyTxt;
 
-    public NetworkList<PlayerInfo> allNetPlayers = new NetworkList<PlayerInfo>();
+    public NetworkPlayers _NetworkedPlayers;
+
     private List<GameObject> playerPanels = new List<GameObject>();
 
     private ulong myLocalClientId;
-
-    private Color[] playerColors = new Color[]
-    {
-        Color.blue,
-        Color.magenta,
-        Color.cyan,
-        Color.yellow
-    };
+    private bool isReady = false;
 
     private void Start()
     {
-        if (IsHost)
-        {
-            foreach (NetworkClient nc in NetworkManager.ConnectedClientsList)
-            {
-                AddPlayerToList(nc.ClientId);
-            }        
-            RefreshPlayerPanels();
-        }
         myLocalClientId = NetworkManager.LocalClientId;
-    }
 
-    public override void OnNetworkSpawn()
-    {
         if (IsHost)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += HostOnClientConnected;
+            _NetworkedPlayers.allNetPlayers.OnListChanged += ServerOnNetPlayersChanged;
+            ServerPopulateLabels();
+            rdyTxt.text = "waiting for ready players";
         }
-        // must be after host connects to signals
-        base.OnNetworkSpawn();
-        if (IsClient)
+        else
         {
-            allNetPlayers.OnListChanged += ClientOnAllPlayersChanged;
-            //NetworkManager.Singleton.OnClientDisconnectCallback += ClientDissconnected;
+            ClientPopulateLabels();
+            _NetworkedPlayers.allNetPlayers.OnListChanged += ClientOnAllPlayersChanged;
+            
+            ReadyBtn.onClick.AddListener(ClientRdyBttnToggled);
+            rdyTxt.text = "not ready";
         }
+        LeaveGameBtn.onClick.AddListener(LeaveGameBtnClick);
     }
 
-    private void ClientOnAllPlayersChanged(NetworkListEvent<PlayerInfo> changeEvent)
+    [ServerRpc(RequireOwnership = false)]
+    public void RdyBttnToggleServerRpc(bool readyStatus, ServerRpcParams serverRpcParams = default)
     {
-        RefreshPlayerPanels();
+        NetworkLog.LogInfo("Ready Btn ServerRPC");
+        _NetworkedPlayers.UpdateReadyClient(serverRpcParams.Receive.SenderClientId, readyStatus);
+        ServerPopulateLabels();
+        UpdatePlayerLabelsClientRpc();
     }
 
-    private void HostOnClientConnected(ulong clientId)
+    [ClientRpc]
+    public void UpdatePlayerLabelsClientRpc()
     {
-        AddPlayerToList(clientId);
-        RefreshPlayerPanels();
+        NetworkLog.LogInfo("Ready Btn clientRPC");
+        if(!IsHost){ClientPopulateLabels();}
     }
 
-    //  private NetworkList<PlayerInfo> allPlayers = new NetworkList<PlayerInfo>();
-    // Start is called before the first frame update
-
-    // Add Players panel phystically triger each prefab
-    private void AddPlayerToList(ulong clientId)
+    public void ClientRdyBttnToggled()
     {
-        allNetPlayers.Add(new PlayerInfo(clientId));
-    }
-
-    private void AddPlayerPanel(PlayerInfo info)
-    {
-        GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
-        LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
-        LPL.setPlayerName(info.clientId);
+        isReady = !isReady;
+        if (isReady)
+        {
+            rdyTxt.text = "Ready!";
+        }
+        else
+        {
+            rdyTxt.text = "Not Ready!";
+        }
         
-        if(IsServer)
-        {
-            LPL.onKickClicked += kickUserBtn;
-
-            //assume server is always ready and set it to true
-            info.isPlayerReady = true;
-            ReadyBtn.gameObject.SetActive(false);
-        }
-
-        if (IsClient && !IsHost || info.clientId == myLocalClientId)
-        {
-            LPL.enableKick(false);
-            ReadyBtn.gameObject.SetActive(true);
-        }
-
-        LPL.SetReady(info.isPlayerReady);
-        LPL.SetIconColor(playerColors[findPlayerIndex(info.clientId)]);
-        playerPanels.Add(newPanel);
+        RdyBttnToggleServerRpc(isReady);
     }
 
-    private int findPlayerIndex(ulong clientId)
-    { 
-        int index = 0;
-        int myMatch = 0;
-
-        for (int i = 0; i > allNetPlayers.Count - 1; i++)
+    private void ServerPopulateLabels()
+    {
+        ClearPlayerPanels();
+        foreach (PlayerInfo pi in _NetworkedPlayers.allNetPlayers)
         {
-            if (clientId == allNetPlayers[i].clientId)
+            GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
+            LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
+            LPL.onKickClicked += KickUserBttn;
+            // make sure we only the host or server displays kick button,
+            if (pi.clientId == NetworkManager.LocalClientId)
             {
-                //match found
-                myMatch = index;        
+                LPL.setKickActive(false);
             }
-        }
-        return myMatch;
+            else
+            {
+                LPL.setKickActive(true);
+            }
+           //Display info and status status
+            LPL.setPlayerName(pi.clientId);
+            LPL.SetReady(pi.isPlayerReady);
+            LPL.SetIconColor(pi.colorId);
+            playerPanels.Add(newPanel);
+        } 
+        //hides ready button
+        ReadyBtn.GameObject().SetActive(false);
     }
 
-    private void RefreshPlayerPanels()
+    private void ClientPopulateLabels()
+    {
+        ClearPlayerPanels();
+        foreach (PlayerInfo pi in _NetworkedPlayers.allNetPlayers)
+        {
+            GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
+            LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
+            LPL.onKickClicked += KickUserBttn;
+           //Turn off kick button for client.
+            LPL.setKickActive(false);
+            
+            //Display info and status status
+            LPL.setPlayerName(pi.clientId);
+            LPL.SetReady(pi.isPlayerReady);
+           
+            LPL.SetIconColor(pi.colorId);
+            playerPanels.Add(newPanel);
+        }
+    }
+
+    private void ClearPlayerPanels()
     {
         foreach (GameObject panel in playerPanels)
         {
             Destroy(panel);
-
         }
         playerPanels.Clear();
-
-        foreach (PlayerInfo pi in allNetPlayers)
-        {
-            AddPlayerPanel(pi);
-        }
     }
-    private void kickUserBtn(ulong kickTarget)
+
+    public void KickUserBttn(ulong kickTarget)
     {
         if (!IsServer || !IsHost) return;
-        foreach(PlayerInfo pi in allNetPlayers)
+        foreach (PlayerInfo pi in _NetworkedPlayers.allNetPlayers)
         {
-            if(pi.clientId == kickTarget)
+            if (pi.clientId == kickTarget)
             {
-                allNetPlayers.Remove(pi);
-                //send RPC to targetClient to disconnect/scene
-                DisconnectClient(kickTarget);
+                _NetworkedPlayers.allNetPlayers.Remove(pi);
+                
+                // send RPC to target client to discconnect/scene
+                DisconnectClient(kickTarget);            
             }
         }
-        RefreshPlayerPanels();
+      }
+
+    private void LeaveGameBtnClick()
+    {
+        if (!IsServer)
+        {
+            QuitLobbyServerRpc();
+        }
+        else
+        {
+            NetworkManager.Shutdown();
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        if (NetworkManager.ShutdownInProgress)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+    private void ServerOnNetPlayersChanged(NetworkListEvent<PlayerInfo> changeevent)
+    {
+        ServerPopulateLabels();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void QuitLobbyServerRpc(ServerRpcParams serverRpcParams=default)
+    {
+        KickUserBttn(serverRpcParams.Receive.SenderClientId);
     }
 
     public void DisconnectClient(ulong kickTarget)
     {
         ClientRpcParams clientRpcParams = default;
         clientRpcParams.Send.TargetClientIds = new ulong[1] { kickTarget };
-        DisconnectClientRPC(clientRpcParams);
-        NetworkManager.Singleton.DisconnectClient(kickTarget);
+        DisconnectionClientRPC(clientRpcParams);
+        NetworkManager.Singleton.DisconnectClient(kickTarget);     
+    }
+    private void ClientOnAllPlayersChanged(NetworkListEvent<PlayerInfo> changeEvent)
+    {
+        ClientPopulateLabels();
     }
 
     [ClientRpc]
-    public void DisconnectClientRPC(ClientRpcParams clientRpcParams)
+    public void DisconnectionClientRPC(ClientRpcParams clientRpcParams)
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0); 
     }
 }

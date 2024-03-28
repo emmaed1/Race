@@ -10,15 +10,15 @@ using UnityEngine.UI;
 public class LobbyPlayerLabel : MonoBehaviour
 {
     [SerializeField] TMP_Text PlayerText;
-    [SerializeField] protected Image readyImage, colorImage;
-    [SerializeField] protected Button Kick_Btn;
+    [SerializeField] Image readyImage, colorImage;
+    [SerializeField] Button kickBtn;
 
     public event Action<ulong> onKickClicked;
     private ulong clientId;
 
     public void OnEnable()
     {
-        Kick_Btn.onClick.AddListener(BtnKick_Clicked);
+        kickBtn.onClick.AddListener(BtnKick_Clicked);
     }
 
     public void setPlayerName(ulong playerName)
@@ -30,6 +30,11 @@ public class LobbyPlayerLabel : MonoBehaviour
     private void BtnKick_Clicked()
     {
         onKickClicked?.Invoke(clientId);
+    }
+
+    public void setKickActive(bool isOn)
+    {
+        kickBtn.gameObject.SetActive(isOn);
     }
 
     public void SetReady(bool ready)
@@ -47,10 +52,5 @@ public class LobbyPlayerLabel : MonoBehaviour
     public void SetIconColor(Color color)
     {
         colorImage.material.color = color;
-    }
-
-    public void enableKick(bool enabled)
-    {
-        Kick_Btn.gameObject.SetActive(enabled);
     }
 }

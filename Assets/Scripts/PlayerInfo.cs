@@ -11,12 +11,12 @@ public struct PlayerInfo : INetworkSerializable, IEquatable<PlayerInfo>
     public ulong clientId;
     public FixedString64Bytes Name;
     public bool isPlayerReady;
-    public int colorId;
+    public Color colorId;
 
     public PlayerInfo(ulong id)
     {
         clientId = id;
-        colorId = 0;
+        colorId = Color.magenta;
         Name = "";
         isPlayerReady = false;
     }
