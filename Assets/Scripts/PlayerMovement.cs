@@ -13,10 +13,9 @@ public class PlayerMovement : NetworkBehaviour
     {
         transform.position = new Vector3(Random.Range(positionRange, -positionRange), 0, Random.Range(positionRange, -positionRange));
     }
-
+    
     private void Update()
     {
-       
         if (!IsOwner) return;
 
         float horizontalInput = Input.GetAxis("Horizontal");

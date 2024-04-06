@@ -36,7 +36,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8440354510657459305}
+  - {fileID: 7179255267152959377}
   - {fileID: 3054410467794677588}
   - {fileID: 6705406466262244636}
   - {fileID: 8563434879906781934}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseUnreliableDeltas: 0
   SyncPositionX: 1
-  SyncPositionY: 0
+  SyncPositionY: 1
   SyncPositionZ: 1
   SyncRotAngleX: 1
   SyncRotAngleY: 1
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e32012c70007641a14e33804a64b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraHolder: {fileID: 8396527468917819571}
+  cameraHolder: {fileID: 7311574878162299535}
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1928713169704828681
 GameObject:
@@ -1375,11 +1375,11 @@ Transform:
   m_GameObject: {fileID: 7311574878162299535}
   serializedVersion: 2
   m_LocalRotation: {x: 0.09839168, y: -0, z: -0, w: 0.99514776}
-  m_LocalPosition: {x: 0.08614254, y: 4.9257636, z: -9.011899}
+  m_LocalPosition: {x: 0, y: 6.57, z: -11.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8440354510657459305}
+  m_Father: {fileID: 4632588817000581015}
   m_LocalEulerAnglesHint: {x: 11.293, y: 0, z: 0}
 --- !u!20 &7545968762906131386
 Camera:
@@ -1543,35 +1543,3 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
---- !u!1 &8396527468917819571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8440354510657459305}
-  m_Layer: 0
-  m_Name: CameraHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8440354510657459305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396527468917819571}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08614254, y: 1.6442366, z: -2.3381011}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7179255267152959377}
-  m_Father: {fileID: 4632588817000581015}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

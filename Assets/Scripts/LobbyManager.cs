@@ -155,11 +155,11 @@ public class LobbyManager : NetworkBehaviour
         }
         else
         {
-            NetworkManager.Shutdown();
+            NetworkManager.Shutdown();  
         }
     }
 
-    public void FixedUpdate()
+    public void fixedupdate()
     {
         if (NetworkManager.ShutdownInProgress)
         {
@@ -193,5 +193,9 @@ public class LobbyManager : NetworkBehaviour
     public void DisconnectionClientRPC(ClientRpcParams clientRpcParams)
     {
         SceneManager.LoadScene(0); 
+    }
+
+    public void OnStartGame(){
+        SceneManager.LoadScene("Game");
     }
 }
