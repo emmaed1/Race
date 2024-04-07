@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -23,6 +24,7 @@ public class NetworkPlayers : NetworkBehaviour
 
     void Start()
     {
+        
         DontDestroyOnLoad(this.gameObject);
         if (IsServer)
         {
@@ -37,16 +39,15 @@ public class NetworkPlayers : NetworkBehaviour
         int color = 0;
         foreach (NetworkClient nc in NetworkManager.ConnectedClientsList)
         {
-            PlayerInfo info = new PlayerInfo();
+            PlayerInfo info = new PlayerInfo(nc.ClientId);
             info.colorId = playerColors[color];
             //match server client with the server make sure we are always ready
-            /*if (nc.clientId == NetworkManager.LocalClientId)
+            if (nc.ClientId == NetworkManager.LocalClientId)
             {
                 info.isPlayerReady = true;
-            }*/
-            info.isPlayerReady = true;
+            }
             allNetPlayers.Add(info);
-            NetworkLog.LogInfo("color for client "+info.clientId+" is set to "+color);
+            NetworkLog.LogInfo("color for client "+info.clientId+" is set to "+playerColors[color]);
             color++;        
         }
         playerCount = color;
@@ -80,6 +81,7 @@ public class NetworkPlayers : NetworkBehaviour
         int idx = FindPlayerIndex(clientId);
         if (idx == -1)
         {
+            Debug.Log("Index is " + idx);
             return;
         }
         // grab info, change it, and then send it back to the list

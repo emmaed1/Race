@@ -71,55 +71,61 @@ public class LobbyManager : NetworkBehaviour
         else
         {
             rdyTxt.text = "Not Ready!";
-        }
-        
+        }        
         RdyBttnToggleServerRpc(isReady);
     }
 
     private void ServerPopulateLabels()
     {
         ClearPlayerPanels();
-        foreach (PlayerInfo pi in _NetworkedPlayers.allNetPlayers)
-        {
-            GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
-            LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
-            LPL.onKickClicked += KickUserBttn;
-            // make sure we only the host or server displays kick button,
-            if (pi.clientId == NetworkManager.LocalClientId)
+        if(IsHost){
+            foreach (PlayerInfo pi in _NetworkedPlayers.allNetPlayers)
             {
-                LPL.setKickActive(false);
-            }
-            else
-            {
-                LPL.setKickActive(true);
-            }
-           //Display info and status status
-            LPL.setPlayerName(pi.clientId);
-            LPL.SetReady(pi.isPlayerReady);
-            LPL.SetIconColor(pi.colorId);
-            playerPanels.Add(newPanel);
-        } 
-        //hides ready button
-        ReadyBtn.GameObject().SetActive(false);
+                GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
+                LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
+                LPL.onKickClicked += KickUserBttn;
+                // make sure we only the host or server displays kick button,
+                if (pi.clientId == NetworkManager.LocalClientId)
+                {
+                    LPL.setKickActive(false);
+                }
+                else
+                {
+                    LPL.setKickActive(true);
+                }
+               //Display info and status status
+                LPL.setPlayerName(pi.clientId);
+                
+                LPL.SetReady(pi.isPlayerReady);
+                LPL.SetIconColor(pi.colorId);
+                playerPanels.Add(newPanel);
+            } 
+            //hides ready button
+            ReadyBtn.GameObject().SetActive(false);
+        }
     }
 
     private void ClientPopulateLabels()
     {
         ClearPlayerPanels();
-        foreach (PlayerInfo pi in _NetworkedPlayers.allNetPlayers)
-        {
-            GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
-            LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
-            LPL.onKickClicked += KickUserBttn;
-           //Turn off kick button for client.
-            LPL.setKickActive(false);
+        if(!IsHost){
+            foreach (PlayerInfo pi in _NetworkedPlayers.allNetPlayers)
+            {
+                GameObject newPanel = Instantiate(PanelPrefab, ContentGO.transform);
+                LobbyPlayerLabel LPL = newPanel.GetComponent<LobbyPlayerLabel>();
+                LPL.onKickClicked += KickUserBttn;
+               //Turn off kick button for client.
+                LPL.setKickActive(false);
             
-            //Display info and status status
-            LPL.setPlayerName(pi.clientId);
-            LPL.SetReady(pi.isPlayerReady);
+                //Display info and status status
+                LPL.setPlayerName(pi.clientId);
+                ClientRdyBttnToggled();
+                LPL.SetReady(pi.isPlayerReady);
            
-            LPL.SetIconColor(pi.colorId);
-            playerPanels.Add(newPanel);
+                LPL.SetIconColor(pi.colorId);
+                playerPanels.Add(newPanel);
+            }
+            ReadyBtn.GameObject().SetActive(true);
         }
     }
 

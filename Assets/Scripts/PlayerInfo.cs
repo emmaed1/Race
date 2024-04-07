@@ -9,7 +9,7 @@ using UnityEngine;
 public struct PlayerInfo : INetworkSerializable, IEquatable<PlayerInfo>
 {
     public ulong clientId;
-    public FixedString64Bytes Name;
+    public FixedString32Bytes Name;
     public bool isPlayerReady;
     public Color colorId;
 
@@ -36,5 +36,5 @@ public struct PlayerInfo : INetworkSerializable, IEquatable<PlayerInfo>
 
     public override string ToString() => Name.Value.ToString();
     public static implicit operator string(PlayerInfo name) => name.ToString();
-    public static implicit operator PlayerInfo(string s) => new PlayerInfo { Name = new FixedString64Bytes(s) };
+    public static implicit operator PlayerInfo(string s) => new PlayerInfo { Name = new FixedString32Bytes(s) };
 }
