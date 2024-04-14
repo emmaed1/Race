@@ -5,32 +5,50 @@ public class PlayerMovement : NetworkBehaviour
 {
     //private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    [SerializeField] private float movementSpeed = 7f;
-    [SerializeField] private float rotationSpeed = 500f;
-    [SerializeField] private float positionRange = 10f;
+    [SerializeField] private float movementSpeed = 10f;
+    //[SerializeField] private float rotationSpeed = 500f;
+    //[SerializeField] private float positionRange = 10f;
+    [SerializeField] public Rigidbody rb;
 
     public override void OnNetworkSpawn()
     {
-        transform.position = new Vector3(Random.Range(positionRange, -positionRange), 0, Random.Range(positionRange, -positionRange));
+        Debug.Log("Spawned");
+        //transform.position = new Vector3(Random.Range(positionRange, -positionRange), 0, Random.Range(positionRange, -positionRange));
     }
     
     private void Update()
     {
-        if (!IsOwner) return;
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        movementDirection.Normalize();
-
-        transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
-
-        if (movementDirection != Vector3.zero)
+        if (Input.GetKey(KeyCode.W))
         {
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            rb.AddForce(0, 0, movementSpeed * Time.deltaTime);
         }
+        if (Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(0, 0, -movementSpeed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(movementSpeed * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(-movementSpeed * Time.deltaTime, 0, 0);
+        }
+        //if (!IsOwner) return;
+
+        //float horizontalInput = Input.GetAxis("Horizontal");
+        //float verticalInput = Input.GetAxis("Vertical");
+
+        //Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        //movementDirection.Normalize();
+
+        //transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
+
+        //if (movementDirection != Vector3.zero)
+        //{
+        //    Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        //}
     }
 
 

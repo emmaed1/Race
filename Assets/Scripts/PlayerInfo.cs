@@ -18,7 +18,7 @@ public struct PlayerInfo : INetworkSerializable, IEquatable<PlayerInfo>
         clientId = id;
         colorId = Color.magenta;
         Name = "";
-        isPlayerReady = false;
+        isPlayerReady = true;
     }
 
     public bool Equals(PlayerInfo other)

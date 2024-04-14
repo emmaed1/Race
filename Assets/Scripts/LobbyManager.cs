@@ -58,7 +58,9 @@ public class LobbyManager : NetworkBehaviour
     public void UpdatePlayerLabelsClientRpc()
     {
         NetworkLog.LogInfo("Ready Btn clientRPC");
-        if(!IsHost){ClientPopulateLabels();}
+        if(!IsHost){
+            ClientPopulateLabels();
+        }
     }
 
     public void ClientRdyBttnToggled()
@@ -94,9 +96,9 @@ public class LobbyManager : NetworkBehaviour
                     LPL.setKickActive(true);
                 }
                //Display info and status status
-                LPL.setPlayerName(pi.clientId);
-                
+                LPL.setPlayerName(pi.clientId);             
                 LPL.SetReady(pi.isPlayerReady);
+                Debug.Log("Player ready status: " + pi.isPlayerReady);
                 LPL.SetIconColor(pi.colorId);
                 playerPanels.Add(newPanel);
             } 
@@ -119,7 +121,6 @@ public class LobbyManager : NetworkBehaviour
             
                 //Display info and status status
                 LPL.setPlayerName(pi.clientId);
-                ClientRdyBttnToggled();
                 LPL.SetReady(pi.isPlayerReady);
            
                 LPL.SetIconColor(pi.colorId);
@@ -202,6 +203,6 @@ public class LobbyManager : NetworkBehaviour
     }
 
     public void OnStartGame(){
-        SceneManager.LoadScene("Game");
+        NetworkManager.SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }
 }
