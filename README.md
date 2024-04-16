@@ -3,6 +3,16 @@
 # Project Description
 
 Class Repo for Network Game Dev (001) Spring 2024
+- Things implemented so far:
+   - MainMenu
+   - Lobby System (minus colors and ready function)
+         - Only host can start game
+   - Count down Timer and game timer 
+- Things to-do:
+   - Get car to Move
+   - Add start/finish line
+   - Track laps
+   - add pickups
 
 # Project Related Links
 
