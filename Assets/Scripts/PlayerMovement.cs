@@ -26,10 +26,11 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] Transform frontLeftTrasnform;
     [SerializeField] Transform backRightTrasnform;
     [SerializeField] Transform backLeftTrasnform;
-    //[SerializeField] public Rigidbody rb;
+    [SerializeField] public Rigidbody rb;
 
     public override void OnNetworkSpawn()
     {
+        rb.GetComponent<Rigidbody>();
         Debug.Log("Spawned");
     }
     
