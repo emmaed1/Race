@@ -31,7 +31,6 @@ public class PlayerMovement : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         Debug.Log("Spawned");
-        //transform.position = new Vector3(Random.Range(positionRange, -positionRange), 0, Random.Range(positionRange, -positionRange));
     }
     
     private void FixedUpdate()
@@ -55,6 +54,8 @@ public class PlayerMovement : NetworkBehaviour
     {
         frontRight.motorTorque = verticalInput * motorForce;
         frontLeft.motorTorque = verticalInput * motorForce;
+        backRight.motorTorque = verticalInput * motorForce;
+        backLeft.motorTorque = verticalInput * motorForce;
         breakForce = isBreaking ? breakForce : 0f;
         if (isBreaking)
         {

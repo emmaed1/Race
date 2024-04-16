@@ -11,6 +11,7 @@ public class PlayerSpawn : NetworkBehaviour
 {
     [SerializeField] public GameObject playerPrefab;
     [SerializeField] public GameObject[] spawnPoints;
+    private List<GameObject> spawnedPoints;
     //private GameObject mPlayer;
 
     private void Start()
@@ -34,16 +35,16 @@ public class PlayerSpawn : NetworkBehaviour
     }
 
     public void SpawnPlayer(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
-    {
-        int spawn = UnityEngine.Random.Range(0, spawnPoints.Length);
+    { 
         if (IsHost)
         {
             foreach(ulong id in clientsCompleted)
             {
-                GameObject player = Instantiate(playerPrefab, spawnPoints[spawn].transform.position,Quaternion.identity);
+                int spawn = UnityEngine.Random.Range(0, spawnPoints.Length);
+                GameObject player = Instantiate(playerPrefab, spawnPoints[spawn].transform.position, Quaternion.identity);
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientsCompleted.First(), true);
-            }
-            //GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");    
+                Debug.Log(spawnPoints[spawn].ToString());
+            }   
         }
     }
 }
