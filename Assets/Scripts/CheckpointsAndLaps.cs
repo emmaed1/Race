@@ -55,13 +55,10 @@ public class CheckpointsAndLaps : NetworkBehaviour
     {
         if (other.tag == "Checkpoint")
         {
-            Debug.Log("Here!");
             GameObject thisCheckpoint = other.gameObject;
-            Debug.Log("First Checkpoint: " + thisCheckpoint);
-            Debug.Log("Start: " + start);
 
             //started the race
-            if(thisCheckpoint == start)
+            if(thisCheckpoint.name == start.name)
             {
                 Debug.Log("Started!");
                 started = true;
@@ -95,15 +92,18 @@ public class CheckpointsAndLaps : NetworkBehaviour
                     Debug.Log("Did not go through all checkpoints");
                 }
             }
+            Debug.Log("Checkpt Length: " + Checkpoints.Length);
             //loop through checkpoints and compare and check which checkpoint the player has passed
-            for(int i = 0; i < Checkpoints.Length; i++)
+            for (int i = 0; i < Checkpoints.Length; i++)
             {
-                if(finished) return;
-                if(thisCheckpoint == Checkpoints[i] && i == currCheckpoint)
+                Debug.Log(i);
+                if (finished) return;
+                if (thisCheckpoint == Checkpoints[i] && i == currCheckpoint)
                 {
                     Debug.Log("Correct Checkpoint");
                     currCheckpoint++;
-                }else if (thisCheckpoint == Checkpoints[i] && i != currCheckpoint)
+                }
+                else if (thisCheckpoint == Checkpoints[i] && i != currCheckpoint)
                 {
                     Debug.Log("Incorrect Checkpoint");
                 }
