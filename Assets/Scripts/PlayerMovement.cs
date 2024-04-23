@@ -4,18 +4,16 @@ using System;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    private const string HORIZONTAL = "Horizontal";
-    private const string Vertical = "Vertical";
-
     private float horizontalInput;
     private float verticalInput;
-    private float currSteerAngle;
-    private float currBreakForce;
-    private bool isBreaking;
 
-    [SerializeField] private float motorForce;
-    [SerializeField] private float breakForce;
-    [SerializeField] private float maxSteerAngle;
+    public float accel = 700f;
+    public float brakeForce = 250f;
+    public float maxTurnAngle = 30f;
+
+    private float currAccel = 0f;
+    private float currBrake = 0f;
+    private float currTurnAngle = 0f;
 
     [SerializeField] WheelCollider frontRight;
     [SerializeField] WheelCollider frontLeft;
@@ -38,56 +36,41 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (!IsOwner) return;
         GetInput();
-        HandleMotor();
+        if (Input.GetKey(KeyCode.Space))
+        {
+            currBrake = brakeForce;
+        }
+        else
+        {
+            currBrake = 0f;
+        }
+        currAccel = accel * verticalInput;
+        frontRight.motorTorque = currAccel;
+        frontLeft.motorTorque = currAccel;
+        //backRight.motorTorque = currAccel;
+        //backLeft.motorTorque = currAccel;
+        
         HandleSterring();
-        UpdateWheels();
+        UpdateWheels(frontLeft, frontLeftTrasnform);
+        UpdateWheels(frontRight, frontRightTrasnform);
+        UpdateWheels(backLeft, backLeftTrasnform);
+        UpdateWheels(backRight, backRightTrasnform);
     }
 
     private void GetInput()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        isBreaking = Input.GetKey(KeyCode.Space);
-    }
-
-
-    private void HandleMotor()
-    {
-        frontRight.motorTorque = verticalInput * motorForce;
-        frontLeft.motorTorque = verticalInput * motorForce;
-        backRight.motorTorque = verticalInput * motorForce;
-        backLeft.motorTorque = verticalInput * motorForce;
-        breakForce = isBreaking ? breakForce : 0f;
-        if (isBreaking)
-        {
-            ApplyBreaking();
-        }
-    }
-
-    private void ApplyBreaking()
-    {
-        frontRight.brakeTorque = currBreakForce;
-        frontLeft.brakeTorque = currBreakForce;
-        backRight.brakeTorque = currBreakForce;
-        backLeft.brakeTorque = currBreakForce;
     }
 
     private void HandleSterring()
     {
-        currSteerAngle = maxSteerAngle * horizontalInput;
-        frontLeft.steerAngle = currSteerAngle;
-        frontRight.steerAngle = currSteerAngle;
+        currTurnAngle = maxTurnAngle * horizontalInput;
+        frontLeft.steerAngle = currTurnAngle;
+        frontRight.steerAngle = currTurnAngle;
     }
 
-    private void UpdateWheels()
-    {
-        UpdateSingleWheel(frontLeft, frontLeftTrasnform);
-        UpdateSingleWheel(frontRight, frontRightTrasnform);
-        UpdateSingleWheel(backLeft, backLeftTrasnform);
-        UpdateSingleWheel(backRight, backRightTrasnform);
-    }
-
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    private void UpdateWheels(WheelCollider wheelCollider, Transform wheelTransform)
     {
         Vector3 pos;
         Quaternion rot;
