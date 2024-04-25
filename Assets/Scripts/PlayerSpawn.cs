@@ -42,6 +42,7 @@ public class PlayerSpawn : NetworkBehaviour
             {
                 GameObject player = Instantiate(playerPrefab, spawnPoints[spawn.Value].transform.position, Quaternion.identity);
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(id, true);
+                player.name = playerPrefab.name;
                 spawn.Value++;
             }
         }

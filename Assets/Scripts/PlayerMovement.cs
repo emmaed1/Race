@@ -7,8 +7,8 @@ public class PlayerMovement : NetworkBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-    public float accel = 700f;
-    public float brakeForce = 250f;
+    public float accel = 500f;
+    public float brakeForce = 3000f;
     public float maxTurnAngle = 30f;
 
     private float currAccel = 0f;

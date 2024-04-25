@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 197.84
@@ -203,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4927514317862032311, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6704702424129490857, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -281,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4927514317862032311, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6704702424129490857, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -352,6 +356,10 @@ PrefabInstance:
     - target: {fileID: 184002, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
       propertyPath: m_Name
       value: Freeway S-Curve (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 184002, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 475188, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
       propertyPath: m_LocalPosition.x
@@ -684,6 +692,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -767,6 +779,54 @@ Transform:
   - {fileID: 1663868031}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &286858085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 286858087}
+  - component: {fileID: 286858086}
+  m_Layer: 0
+  m_Name: Respawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &286858086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286858085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476cd79fdd10331429002a79b88e938e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ground:
+    serializedVersion: 2
+    m_Bits: 512
+  player: {fileID: 1290287225974651876, guid: 94c10265ba89a9145b3b107695a69783, type: 3}
+--- !u!4 &286858087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286858085}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 128.55685, y: 28.49591, z: 96.681755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &297358495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -778,6 +838,10 @@ PrefabInstance:
     - target: {fileID: 168972, guid: 401d27194e0344948b125cf0483f7637, type: 3}
       propertyPath: m_Name
       value: Freeway Lift Highway
+      objectReference: {fileID: 0}
+    - target: {fileID: 168972, guid: 401d27194e0344948b125cf0483f7637, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 459074, guid: 401d27194e0344948b125cf0483f7637, type: 3}
       propertyPath: m_LocalPosition.x
@@ -840,6 +904,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -970,6 +1038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Highway Bridge 2
       objectReference: {fileID: 0}
+    - target: {fileID: 172256, guid: 25e5c01865542e449bf00fcc40da6a11, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 429354, guid: 25e5c01865542e449bf00fcc40da6a11, type: 3}
       propertyPath: m_LocalPosition.x
       value: 133.26031
@@ -1031,6 +1103,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1094,6 +1170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway S-Curve
       objectReference: {fileID: 0}
+    - target: {fileID: 184002, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 475188, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
       propertyPath: m_LocalPosition.x
       value: 227.4203
@@ -1156,6 +1236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -1215,7 +1299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 521416977}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,6 +1336,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1388,6 +1476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 190.36969
@@ -1449,6 +1541,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1512,6 +1608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Highway Bridge 2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 172256, guid: 25e5c01865542e449bf00fcc40da6a11, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 429354, guid: 25e5c01865542e449bf00fcc40da6a11, type: 3}
       propertyPath: m_LocalPosition.x
       value: 185.6
@@ -1574,6 +1674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -1635,6 +1739,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1704,7 +1812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4927514317862032311, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6704702424129490857, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -1869,6 +1977,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2126,6 +2238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -2188,6 +2304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -2249,6 +2369,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2386,7 +2510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4927514317862032311, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6704702424129490857, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -2457,6 +2581,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2654,6 +2782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 182.95
@@ -2715,6 +2847,10 @@ PrefabInstance:
     - target: {fileID: 184002, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
       propertyPath: m_Name
       value: Freeway S-Curve
+      objectReference: {fileID: 0}
+    - target: {fileID: 184002, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 475188, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2778,6 +2914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 192.8597
@@ -2839,6 +2979,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2902,6 +3046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Lift Highway
       objectReference: {fileID: 0}
+    - target: {fileID: 168972, guid: 401d27194e0344948b125cf0483f7637, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 459074, guid: 401d27194e0344948b125cf0483f7637, type: 3}
       propertyPath: m_LocalPosition.x
       value: 165.51697
@@ -2963,6 +3111,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3129,6 +3281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 195.34938
@@ -3190,6 +3346,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3253,6 +3413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 259.74
@@ -3314,7 +3478,7 @@ GameObject:
   - component: {fileID: 1254443754}
   - component: {fileID: 1254443756}
   - component: {fileID: 1254443755}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3407,6 +3571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 185.43968
@@ -3468,6 +3636,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3531,6 +3703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Lift Highway
       objectReference: {fileID: 0}
+    - target: {fileID: 168972, guid: 401d27194e0344948b125cf0483f7637, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 459074, guid: 401d27194e0344948b125cf0483f7637, type: 3}
       propertyPath: m_LocalPosition.x
       value: 239.98997
@@ -3592,6 +3768,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3655,6 +3835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 170.5
@@ -3716,6 +3900,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3779,6 +3967,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 180.45999
@@ -3840,6 +4032,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4006,6 +4202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Curve 2
       objectReference: {fileID: 0}
+    - target: {fileID: 150330, guid: d2b4c92a59cf1a441bf008ca26395efa, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 484568, guid: d2b4c92a59cf1a441bf008ca26395efa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.88
@@ -4067,6 +4267,10 @@ PrefabInstance:
     - target: {fileID: 168972, guid: 401d27194e0344948b125cf0483f7637, type: 3}
       propertyPath: m_Name
       value: Freeway Lift Highway
+      objectReference: {fileID: 0}
+    - target: {fileID: 168972, guid: 401d27194e0344948b125cf0483f7637, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 459074, guid: 401d27194e0344948b125cf0483f7637, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4130,6 +4334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -4191,6 +4399,10 @@ PrefabInstance:
     - target: {fileID: 184002, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
       propertyPath: m_Name
       value: Freeway S-Curve
+      objectReference: {fileID: 0}
+    - target: {fileID: 184002, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 475188, guid: b21431263a66fd84ebb8c5a9f3e51709, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4254,6 +4466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 259.9
@@ -4315,7 +4531,7 @@ GameObject:
   - component: {fileID: 1570379489}
   - component: {fileID: 1570379491}
   - component: {fileID: 1570379490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4407,6 +4623,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4577,6 +4797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 259.9
@@ -4636,7 +4860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1646055463}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Road
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4763,6 +4987,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -4824,6 +5052,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4887,6 +5119,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Curve 2
       objectReference: {fileID: 0}
+    - target: {fileID: 150330, guid: d2b4c92a59cf1a441bf008ca26395efa, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 484568, guid: d2b4c92a59cf1a441bf008ca26395efa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 217.3
@@ -4948,6 +5184,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5103,6 +5343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -5164,6 +5408,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5227,6 +5475,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 168.01031
@@ -5288,6 +5540,10 @@ PrefabInstance:
     - target: {fileID: 150330, guid: d2b4c92a59cf1a441bf008ca26395efa, type: 3}
       propertyPath: m_Name
       value: Freeway Curve 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 150330, guid: d2b4c92a59cf1a441bf008ca26395efa, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 484568, guid: d2b4c92a59cf1a441bf008ca26395efa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5351,6 +5607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 215.2
@@ -5412,6 +5672,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5475,6 +5739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 212.70999
@@ -5537,6 +5805,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -5598,7 +5870,7 @@ GameObject:
   - component: {fileID: 1961328145}
   - component: {fileID: 1961328147}
   - component: {fileID: 1961328146}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5691,6 +5963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -5752,6 +6028,10 @@ PrefabInstance:
     - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_Name
       value: Freeway Straight 1 (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5821,7 +6101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4927514317862032311, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6704702424129490857, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -5893,6 +6173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 259.9
@@ -5954,6 +6238,10 @@ PrefabInstance:
     - target: {fileID: 127220, guid: 6373f7d3f749b254081c2c8c9372face, type: 3}
       propertyPath: m_Name
       value: Freeway Curve 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 127220, guid: 6373f7d3f749b254081c2c8c9372face, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 453832, guid: 6373f7d3f749b254081c2c8c9372face, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6017,6 +6305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -6079,6 +6371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeway Straight 1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 121254, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 423198, guid: ad182cc030f80d2418924040efeaaedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.940327
@@ -6140,7 +6436,7 @@ GameObject:
   - component: {fileID: 2134269193}
   - component: {fileID: 2134269195}
   - component: {fileID: 2134269194}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6236,3 +6532,4 @@ SceneRoots:
   - {fileID: 165695070}
   - {fileID: 730546319}
   - {fileID: 325269701}
+  - {fileID: 286858087}
