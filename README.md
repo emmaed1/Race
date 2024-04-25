@@ -16,6 +16,7 @@ Class Repo for Network Game Dev (001) Spring 2024
    - add pickups
 - Known Bugs
    - Some syncing issues with client and host
+   - respawning issues when car flips or go off track
 
 # Project Related Links
 - https://docs-multiplayer.unity3d.com/netcode/current/about/
