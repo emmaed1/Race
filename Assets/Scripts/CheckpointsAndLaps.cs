@@ -10,12 +10,13 @@ public class CheckpointsAndLaps : NetworkBehaviour
     public event EventHandler OnPlayerCorrectCheckpoint;
     public event EventHandler OnPlayerWrongCheckpoint;
 
-    [SerializeField] private List<Transform> carTransformList;
+    //[SerializeField] private List<Transform> carTransformList;
 
     [Header("Checkpoints")]
     private List<CheckpointSingle> checkpointSingleList;
 
-    private List<int> nextCheckpointSingleIndexList;
+    //private List<int> nextCheckpointSingleIndexList;
+    private int nextCheckpointSingleIndex;
 
     private void Awake()
     {
@@ -28,26 +29,30 @@ public class CheckpointsAndLaps : NetworkBehaviour
             checkpointSingle.setTrackCheckpoints(this);
             checkpointSingleList.Add(checkpointSingle);
         }
-        nextCheckpointSingleIndexList = new List<int>();
-        foreach(Transform carTransform in carTransformList)
+        nextCheckpointSingleIndex = 0;
+        //nextCheckpointSingleIndexList = new List<int>();
+
+        //for multiplayer use?
+        /*foreach(Transform carTransform in carTransformList)
         {
             nextCheckpointSingleIndexList.Add(0);
-        }
+        }*/
     }
 
     public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform) 
     {   
-        int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
+        //int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex) {
             Debug.Log("Correct");
 
             CheckpointSingle correctSingle = checkpointSingleList[nextCheckpointSingleIndex];
             correctSingle.Hide();
 
-            nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
+            nextCheckpointSingleIndex = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
+            //nextCheckpointSingleIndex[carTransformList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
             OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
         } else {
-            Debug.Log(nextCheckpointSingleIndexList + "Wrong");
+            Debug.Log(nextCheckpointSingleIndex + "Wrong");
             OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
 
             CheckpointSingle correctSingle = checkpointSingleList[nextCheckpointSingleIndex];
