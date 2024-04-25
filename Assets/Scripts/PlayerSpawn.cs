@@ -30,7 +30,6 @@ public class PlayerSpawn : NetworkBehaviour
         base.OnNetworkSpawn();
         if (base.IsHost)
         {
-            Debug.Log("Spawn Points" + spawnPoints.Length);
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SpawnPlayer;
         }
     }
@@ -43,7 +42,6 @@ public class PlayerSpawn : NetworkBehaviour
             {
                 GameObject player = Instantiate(playerPrefab, spawnPoints[spawn.Value].transform.position, Quaternion.identity);
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(id, true);
-                Debug.Log(spawnPoints[spawn.Value].ToString());
                 spawn.Value++;
             }
         }

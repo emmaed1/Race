@@ -5,109 +5,53 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CheckpointsAndLaps : NetworkBehaviour
+public class CheckpointsAndLaps : NetworkBehaviour 
 {
+    public event EventHandler OnPlayerCorrectCheckpoint;
+    public event EventHandler OnPlayerWrongCheckpoint;
+
+    [SerializeField] private List<Transform> carTransformList;
+
     [Header("Checkpoints")]
-    [SerializeField] public GameObject start;
-    [SerializeField] public GameObject end;
-    [SerializeField] public GameObject[] Checkpoints = new GameObject[0];
-    [SerializeField] public Collider other;
+    private List<CheckpointSingle> checkpointSingleList;
 
-    [Header("Settings")]
-    [SerializeField] public float laps = 1;
-
-    [Header("Information")]
-    private float currCheckpoint;
-    private float currLap;
-    private bool started;
-    private bool finished;
-
-    private Transform checkpointsParent;
-
-    private void Start()
-    {    
-        currCheckpoint = 0;
-        currLap = 1;
-
-        started = false;
-        finished = false;
-    }
+    private List<int> nextCheckpointSingleIndexList;
 
     private void Awake()
     {
-        checkpointsParent = GameObject.Find("CheckPoints").transform;
-    }
-    public override void OnNetworkSpawn()
-    {
-        base.OnNetworkSpawn();
-        var startLine = Instantiate(start);
-        startLine.name = start.name;
-        var endLine = Instantiate(end);
-        endLine.name = end.name;
-        for (int i = 0; i < Checkpoints.Length; i++)
+        Transform checkpointsTransform = transform.Find("CheckPoints");
+
+        checkpointSingleList = new List<CheckpointSingle>();
+        foreach(Transform checkpointsSingle in checkpointsTransform)
         {
-            var checks = Instantiate(Checkpoints[i]);
-            checks.name = Checkpoints[i].name;
+            CheckpointSingle checkpointSingle = checkpointsSingle.GetComponent<CheckpointSingle>();
+            checkpointSingle.setTrackCheckpoints(this);
+            checkpointSingleList.Add(checkpointSingle);
+        }
+        nextCheckpointSingleIndexList = new List<int>();
+        foreach(Transform carTransform in carTransformList)
+        {
+            nextCheckpointSingleIndexList.Add(0);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Checkpoint")
-        {
-            GameObject thisCheckpoint = other.gameObject;
+    public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform) 
+    {   
+        int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
+        if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex) {
+            Debug.Log("Correct");
 
-            //started the race
-            if(thisCheckpoint.name == start.name)
-            {
-                Debug.Log("Started!");
-                started = true;
-            }else if(thisCheckpoint == end && started)
-            {
-                //if all laps are finished, end the race
-                if(currLap == laps)
-                {
-                    if(currCheckpoint == Checkpoints.Length)
-                    {
-                        finished = true;
-                        Debug.Log("Finsihed!");
-                    }
-                    else
-                    {
-                        Debug.Log("Did not go through all checkpoints");
-                    }
-                }
-                //if all laps are not finished, start a new lap
-                else if(currLap < laps)
-                {
-                    if(currCheckpoint == Checkpoints.Length)
-                    {
-                        currLap++;
-                        currCheckpoint = 0;
-                        Debug.Log($"Started lap {currLap}");
-                    }
-                }
-                else
-                {
-                    Debug.Log("Did not go through all checkpoints");
-                }
-            }
-            Debug.Log("Checkpt Length: " + Checkpoints.Length);
-            //loop through checkpoints and compare and check which checkpoint the player has passed
-            for (int i = 0; i < Checkpoints.Length; i++)
-            {
-                Debug.Log(i);
-                if (finished) return;
-                if (thisCheckpoint == Checkpoints[i] && i == currCheckpoint)
-                {
-                    Debug.Log("Correct Checkpoint");
-                    currCheckpoint++;
-                }
-                else if (thisCheckpoint == Checkpoints[i] && i != currCheckpoint)
-                {
-                    Debug.Log("Incorrect Checkpoint");
-                }
-            }
+            CheckpointSingle correctSingle = checkpointSingleList[nextCheckpointSingleIndex];
+            correctSingle.Hide();
+
+            nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
+            OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
+        } else {
+            Debug.Log(nextCheckpointSingleIndexList + "Wrong");
+            OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
+
+            CheckpointSingle correctSingle = checkpointSingleList[nextCheckpointSingleIndex];
+            correctSingle.Show();
         }
     }
 }

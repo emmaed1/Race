@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1862798917339280861}
   - component: {fileID: 625119765174990879}
   - component: {fileID: 1198875373810349709}
-  - component: {fileID: 8950420415291986033}
   m_Layer: 0
   m_Name: Vehicle_Player
   m_TagString: Player
@@ -75,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 271197419
+  GlobalObjectIdHash: 642813816
   InScenePlacedSourceGlobalObjectIdHash: 271197419
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -201,27 +200,6 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &8950420415291986033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290287225974651876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183b269ceae089e4998bd10d1d97277c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  start: {fileID: 8574198918999726382, guid: 4d244e55a2cd8b84ca2f9ffdd5abcb42, type: 3}
-  end: {fileID: 8574198918999726382, guid: 4d244e55a2cd8b84ca2f9ffdd5abcb42, type: 3}
-  Checkpoints:
-  - {fileID: 4662900151036151220, guid: 0d7c98cb323917d40bebd2c96586748a, type: 3}
-  - {fileID: 7251533132266782588, guid: 0f9bf00ef877af54e970b44a5829fdb4, type: 3}
-  - {fileID: 4729741512454633538, guid: ed77d3521f6298c4b8be92617c77607e, type: 3}
-  - {fileID: 3523751868606451927, guid: 2ad1c9b4098de534db31627506308c46, type: 3}
-  other: {fileID: 1801630272939731447}
-  laps: 1
 --- !u!1 &1928713169704828681
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +487,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -615,7 +593,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -756,7 +734,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
