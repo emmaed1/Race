@@ -5,14 +5,16 @@
 Class Repo for Network Game Dev (001) Spring 2024
 - Things implemented so far:
    - MainMenu
+      - choose host or client (will not work if there is no host present)
    - Lobby System (minus colors and ready function)
-         - Only host can start game
+      - Only host can start game
+      - can leave or be kicked
    - Count down Timer and game timer
    - Track checkpoints and laps
+      - console outputs correct checkpoint, wrong checkpoint will pop up on screen (no cheating the laps)
 - Things to-do:
    - add pickups
 - Known Bugs
-   - "wrong checkpoint" will pop up even tho it's the correct checkpoint
    - Some syncing issues with client and host
 
 # Project Related Links
