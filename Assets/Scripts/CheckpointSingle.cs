@@ -20,7 +20,7 @@ public class CheckpointSingle : NetworkBehaviour
     {
         if(other.tag == "Player")
         {
-            trackCheckpointsandLaps.CarThroughCheckpoint(this, other.transform); ;
+            trackCheckpointsandLaps.CarThroughCheckpoint(this); ;
         }
     }
 

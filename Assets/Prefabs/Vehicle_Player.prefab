@@ -210,9 +210,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7400232243159654519}
   - component: {fileID: 7476141307356994286}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BackLeftCollider
-  m_TagString: Untagged
+  m_TagString: WheelCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,7 +487,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -593,7 +593,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -734,7 +734,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1014,9 +1014,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6430921683240750715}
   - component: {fileID: 3550128984247284098}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FrontRightCollider
-  m_TagString: Untagged
+  m_TagString: WheelCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1203,9 +1203,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2254138805604480493}
   - component: {fileID: 4032965455621174043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FrontLeftCollider
-  m_TagString: Untagged
+  m_TagString: WheelCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1431,9 +1431,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4314136583886120097}
   - component: {fileID: 3832405027171822661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BackRightCollider
-  m_TagString: Untagged
+  m_TagString: WheelCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

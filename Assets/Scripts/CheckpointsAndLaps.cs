@@ -28,6 +28,7 @@ public class CheckpointsAndLaps : NetworkBehaviour
             CheckpointSingle checkpointSingle = checkpointsSingle.GetComponent<CheckpointSingle>();
             checkpointSingle.setTrackCheckpoints(this);
             checkpointSingleList.Add(checkpointSingle);
+            Debug.Log("List: " + checkpointSingleList);
         }
         nextCheckpointSingleIndex = 0;
         //nextCheckpointSingleIndexList = new List<int>();
@@ -39,7 +40,7 @@ public class CheckpointsAndLaps : NetworkBehaviour
         }*/
     }
 
-    public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform) 
+    public void CarThroughCheckpoint(CheckpointSingle checkpointSingle) 
     {   
         //int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex) {
@@ -51,7 +52,8 @@ public class CheckpointsAndLaps : NetworkBehaviour
             nextCheckpointSingleIndex = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
             //nextCheckpointSingleIndex[carTransformList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
             OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
-        } else {
+        } else if(checkpointSingleList.IndexOf(checkpointSingle) != nextCheckpointSingleIndex - 1)
+        {
             Debug.Log(nextCheckpointSingleIndex + "Wrong");
             OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
 
