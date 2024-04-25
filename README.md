@@ -16,6 +16,8 @@ Class Repo for Network Game Dev (001) Spring 2024
    - Some syncing issues with client and host
 
 # Project Related Links
+- https://docs-multiplayer.unity3d.com/netcode/current/about/
+- https://www.codemonkey.com/
 
 # Coding Guidelines
 
